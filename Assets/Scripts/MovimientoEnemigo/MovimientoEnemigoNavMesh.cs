@@ -1,0 +1,53 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+using UnityEngine.AI;
+
+public class MovimientoEnemigoNavMesh : MonoBehaviour
+{
+    // Start is called before the first frame update
+    public float rangoDeAlerta;
+    public LayerMask capaDelJugador;
+    public bool estarAlerta = true;
+    public Transform posJugador;
+    public float speed;
+    private Rigidbody2D enemyrb;
+    private Vector2 vectorJugador;
+    private NavMeshAgent navMeshAgent;
+
+    private void Awake()
+    {
+        navMeshAgent = GetComponent<NavMeshAgent>();
+    }
+
+    void Start()
+    {
+        //enemyrb = GetComponent<Rigidbody2D>();
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
+      //  estarAlerta = Physics.CheckSphere(transform.position, rangoDeAlerta, capaDelJugador);
+        if (estarAlerta)
+        {
+            //transform.LookAt(posJugador);
+            vectorJugador = new Vector2(posJugador.position.x, transform.position.y);
+            //transform.LookAt(vectorJugador);
+            //transform.position = Vector3.MoveTowards(transform.position,vectorJugador, velocidad * Time.deltaTime);
+            navMeshAgent.SetDestination(vectorJugador);
+
+        }
+    }
+
+    private void FixedUpdate()
+    {
+        
+    }
+
+    private void OnDrawGizmos()
+    {
+        Gizmos.color = Color.red;
+        Gizmos.DrawWireSphere(transform.position, rangoDeAlerta);
+    }
+}
