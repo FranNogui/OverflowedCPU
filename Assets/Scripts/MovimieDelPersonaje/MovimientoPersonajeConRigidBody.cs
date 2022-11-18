@@ -27,4 +27,20 @@ public class MovimientoPersonajeConRigidBody : MonoBehaviour
     {
         playerRb.MovePosition(playerRb.position + moveInput * speed * Time.fixedDeltaTime);
     }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.CompareTag("Enemigo"))
+        {
+            Debug.Log("Jugador atacado");
+        }
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.CompareTag("Enemigo"))
+        {
+            Debug.Log("Jugador atacado trigger");
+        }
+    }
 }
