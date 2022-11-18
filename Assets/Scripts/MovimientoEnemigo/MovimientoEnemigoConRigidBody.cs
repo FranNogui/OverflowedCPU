@@ -10,7 +10,7 @@ public class MovimientoEnemigoConRigidBody : MonoBehaviour
     public bool estarAlerta;
     public Transform posJugador;
     public float speed;
-    private Rigidbody2D enemyrb;
+    //private Rigidbody2D enemyrb;
     private Vector2 vectorJugador;
     //private NavMeshAgent navMeshAgent;
 
@@ -21,7 +21,7 @@ public class MovimientoEnemigoConRigidBody : MonoBehaviour
 
     void Start()
     {
-        enemyrb = GetComponent<Rigidbody2D>();
+        //enemyrb = GetComponent<Rigidbody2D>();
     }
 
     // Update is called once per frame
@@ -54,5 +54,22 @@ public class MovimientoEnemigoConRigidBody : MonoBehaviour
     {
         Gizmos.color = Color.red;
         Gizmos.DrawWireSphere(transform.position, rangoDeAlerta);
+    }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.CompareTag("Player"))
+        {
+            Debug.Log("Atacando jugador");
+        }
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+     /*   if (other.CompareTag("Player"))
+        {
+            Debug.Log("Atacando jugador onTrigger");
+            atacando = true;
+        }*/
     }
 }
