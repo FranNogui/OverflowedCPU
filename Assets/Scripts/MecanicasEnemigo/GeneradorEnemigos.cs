@@ -64,7 +64,7 @@ public class GeneradorEnemigos : MonoBehaviour
 
     private void GenerarEnemigo()
     {
-        if (generadorHorizontal)
+        /*if (generadorHorizontal)
         {
             float puntoGeneracionX = generadorNumero.Next((int)(posX - longX / 2), (int)(posX + longX / 2));
             GenerarEnemigoHorizontal(puntoGeneracionX);
@@ -73,7 +73,8 @@ public class GeneradorEnemigos : MonoBehaviour
         {
             float puntoGeneracionY = generadorNumero.Next((int)(posY - longY / 2), (int)(posY + longY / 2));
             GenerarEnemigoVertical(puntoGeneracionY);
-        }
+        }*/
+        GenerarEnemigoCentral();
     }
 
     private void GenerarEnemigoHorizontal(float puntoGeneracionX)
@@ -88,6 +89,21 @@ public class GeneradorEnemigos : MonoBehaviour
             Instantiate(enemigo3, new Vector2(puntoGeneracionX, posY), transform.rotation);
         else
             Instantiate(enemigo4, new Vector2(puntoGeneracionX, posY), transform.rotation);
+        _CPU.anyadirCarga(20);
+    }
+
+    private void GenerarEnemigoCentral()
+    {
+        float rand = UnityEngine.Random.value;
+        rand *= 100;
+        if (rand < 100 / 4)
+            Instantiate(enemigo1, transform.position, transform.rotation);
+        else if (rand < 2 * 100 / 4)
+            Instantiate(enemigo2, transform.position, transform.rotation);
+        else if (rand < 3 * 100 / 4)
+            Instantiate(enemigo3, transform.position, transform.rotation);
+        else
+            Instantiate(enemigo4, transform.position, transform.rotation);
         _CPU.anyadirCarga(20);
     }
 
