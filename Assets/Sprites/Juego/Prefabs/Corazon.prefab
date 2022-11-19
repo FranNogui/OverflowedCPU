@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4629305428472542133}
   - component: {fileID: 4629305428472542138}
+  - component: {fileID: 2528967596689878910}
   m_Layer: 0
   m_Name: Corazon
   m_TagString: Untagged
@@ -84,3 +85,17 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &2528967596689878910
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4629305428472542132}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f2473080baf561347aa31c42e8a9cf1e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _activo: {fileID: 21300000, guid: df04ae07b8f654643ac93472e1573ccc, type: 3}
+  _inactivo: {fileID: 21300000, guid: 14a810362194f4d45a1075dc1b5e4749, type: 3}
