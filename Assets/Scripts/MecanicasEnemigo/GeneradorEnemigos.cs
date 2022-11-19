@@ -14,30 +14,46 @@ public class GeneradorEnemigos : MonoBehaviour
     private GameObject enemigo3;
     [SerializeField]
     private bool generadorHorizontal;
+    public int tiempoEsperaMin;
+    public int tiempoEsperaMax;
+    private System.Random generadorNumero;
     private float posY;
     private float posX;
     private float longX;
     private float longY;
+    private float tiempo;
     void Start()
     {
         posY = transform.position.y;
         posX = transform.position.x;
         longX = transform.localScale.x;
         longY = transform.localScale.y;
+        tiempo = 0f;
+        generadorNumero = new System.Random();
     }
 
     // Update is called once per frame
     void Update()
     {
-        System.Random r = new System.Random();
+        int tiempoEspera = generadorNumero.Next(tiempoEsperaMin, tiempoEsperaMax);
+        tiempo = tiempo + 1f * Time.deltaTime;
+        if(tiempo >= tiempoEspera)
+        {
+            tiempo = 0f;
+            GenerarEnemigo();
+        }
+    }
+
+    private void GenerarEnemigo()
+    {
         if (generadorHorizontal)
         {
-            float puntoGeneracionX = r.Next((int)(posX - longX/2), (int)(posX + longX/2));
+            float puntoGeneracionX = generadorNumero.Next((int)(posX - longX / 2), (int)(posX + longX / 2));
             GenerarEnemigoHorizontal(puntoGeneracionX);
         }
         else
         {
-            float puntoGeneracionY = r.Next((int)(posY - longY / 2), (int)(posY + longY / 2));
+            float puntoGeneracionY = generadorNumero.Next((int)(posY - longY / 2), (int)(posY + longY / 2));
             GenerarEnemigoVertical(puntoGeneracionY);
         }
     }

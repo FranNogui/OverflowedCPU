@@ -8,6 +8,9 @@ public class DisparoJugador : MonoBehaviour
     private Transform jugador;
     [SerializeField]
     private GameObject bala;
+    [SerializeField]
+    private int tiempoEspera;
+    private float tiempo;
     private Transform enemigoCercano;
     private DetectorEnemigos detectorEnemigos;
     private MovimientoBala movBala;
@@ -15,26 +18,33 @@ public class DisparoJugador : MonoBehaviour
     void Start()
     {
         detectorEnemigos = GetComponent<DetectorEnemigos>();
+        tiempo = 0f;
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (detectorEnemigos.VerEnemigos().Count != 0)
+        tiempo = tiempo + 1f * Time.deltaTime;
+        if (tiempo >= tiempoEspera)
         {
-            List<GameObject> enemigos = detectorEnemigos.VerEnemigos();
-            enemigoCercano = enemigos[0].transform;
-            for(int i = 1; i < enemigos.Count; i++)
+            tiempo = 0;
+            if (detectorEnemigos.VerEnemigos().Count != 0)
             {
-                Vector2 distanciaCercano = enemigoCercano.position - jugador.position;
-                Vector2 distanciaNuevo = enemigos[i].transform.position - jugador.position;
-                if(Mathf.Abs(distanciaNuevo.x + distanciaNuevo.y) < Mathf.Abs(distanciaCercano.x + distanciaNuevo.y))
+                List<GameObject> enemigos = detectorEnemigos.VerEnemigos();
+                enemigoCercano = enemigos[0].transform;
+                for (int i = 1; i < enemigos.Count; i++)
                 {
-                    enemigoCercano = enemigos[i].transform;
+                    Vector2 distanciaCercano = enemigoCercano.position - jugador.position;
+                    Vector2 distanciaNuevo = enemigos[i].transform.position - jugador.position;
+                    if (Mathf.Abs(distanciaNuevo.x + distanciaNuevo.y) < Mathf.Abs(distanciaCercano.x + distanciaNuevo.y))
+                    {
+                        enemigoCercano = enemigos[i].transform;
+                    }
                 }
+                Disparar();
             }
-            Disparar();
         }
+        
         
     }
 
