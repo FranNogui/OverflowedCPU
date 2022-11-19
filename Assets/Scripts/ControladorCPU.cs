@@ -40,6 +40,9 @@ public class ControladorCPU : MonoBehaviour
     private ControladorCorazon[] _corazones;
     private int _vida;
 
+    [SerializeField]
+    private GeneradorEnemigos[] _portales;
+
     private int _nivel;
 
     // Start is called before the first frame update
@@ -54,6 +57,7 @@ public class ControladorCPU : MonoBehaviour
         _nivel = 0;
         iniciarJuego();
         _carga = 0;
+        iniciarPortales(_nivel);
     }
 
     // Update is called once per frame
@@ -223,5 +227,14 @@ public class ControladorCPU : MonoBehaviour
     {
         _carga -= carga;
         _porcentaje = (_carga / MAXCARGA) * 100.0f;
+    }
+
+    public void iniciarPortales(int nivel)
+    {
+        for (var i = 0; i < 5; i++)
+        {
+            _portales[i].nivel(nivel);
+            _portales[i].activar();
+        }
     }
 }

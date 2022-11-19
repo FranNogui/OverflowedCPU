@@ -22,6 +22,7 @@ public class MovimientoEnemigoConRigidBody : MonoBehaviour
     private void Awake()
     {
         //navMeshAgent = GetComponent<NavMeshAgent>();
+        posJugador = GameObject.Find("Player").transform;
     }
 
     void Start()
