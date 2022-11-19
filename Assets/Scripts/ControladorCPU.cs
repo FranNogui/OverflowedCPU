@@ -89,7 +89,7 @@ public class ControladorCPU : MonoBehaviour
     {
         Time.timeScale = 0;
         crash = true;
-        yield return new WaitForSecondsRealtime(1.0f);
+        yield return new WaitForSecondsRealtime(3.0f);
         SceneManager.LoadScene("FinJuego");
     }
 
