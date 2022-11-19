@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class ControladorBotones : MonoBehaviour
 {
@@ -21,7 +22,7 @@ public class ControladorBotones : MonoBehaviour
     { Application.Quit(); }
 
 
-    // Callback del botón de cerrar de la pantalla de menu info
+    // Callback del botï¿½n de cerrar de la pantalla de menu info
     public void MenuInfoHeaderQuitPulsado()
     { _menuInfoPanel.SetActive(false); }
 
@@ -29,4 +30,8 @@ public class ControladorBotones : MonoBehaviour
     // Callback del boton del menu del exe del juego
     public void MenuInfoExePulsado()
     { _menuInfoPanel.SetActive(true); }
+
+    public void IniciarJuegoPulsado(){
+        SceneManager.LoadScene("EscenaJuego");    
+    }
 }
