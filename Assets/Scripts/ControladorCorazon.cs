@@ -12,7 +12,7 @@ public class ControladorCorazon : MonoBehaviour
 
     private SpriteRenderer _imagen;
 
-    public void Start()
+    public void Awake()
     {
         _imagen = GetComponent<SpriteRenderer>();
     }

@@ -52,7 +52,7 @@ public class MovimientoPersonajeConRigidBody : MonoBehaviour
         this.vidaMax = vidaMax;
     }
 
-    public void getVidaMax()
+    public int getVidaMax()
     {
         return vidaMax;
     }
