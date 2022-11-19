@@ -598,7 +598,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 219269999}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1421766352}
+        m_TargetAssemblyTypeName: ControladorBotones, Assembly-CSharp
+        m_MethodName: IniciarJuegoPulsado
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &219269999
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -808,11 +820,7 @@ MonoBehaviour:
     <color=#feae34>Q</color>
 
     Soltar
-    item seleccionado
-
-    <color=#feae34>R</color>
-
-    Mejora item seleccionado'
+    item seleccionado'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: fea8d6dda61c52e4282aeb7a1bbf65e5, type: 2}
   m_sharedMaterial: {fileID: 6943125114264236154, guid: fea8d6dda61c52e4282aeb7a1bbf65e5, type: 2}
@@ -839,7 +847,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 32
+  m_fontSize: 36.05
   m_fontSizeBase: 30
   m_fontWeight: 400
   m_enableAutoSizing: 1
