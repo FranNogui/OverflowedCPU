@@ -40,12 +40,12 @@ public class DetectorEnemigos : MonoBehaviour
         }
     }
 
-    private List<GameObject> VerEnemigos()
+    public List<GameObject> VerEnemigos()
     {
         return enemigos;
     }
 
-    private void clearEnemigos()
+    public void clearEnemigos()
     {
         enemigos.Clear();
         num_enemigos = 0;
