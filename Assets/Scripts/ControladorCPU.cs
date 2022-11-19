@@ -255,43 +255,43 @@ public class ControladorCPU : MonoBehaviour
             _reproductor.clip = _loops[_loopActual];
             _reproductor.Play();
         }
-        else if (_porcentaje < 2 * 100 / 8 && _loopActual != 1)
+        else if (_porcentaje < 2 * 100 / 8 && _porcentaje > 100 / 8  && _loopActual != 1)
         {
             _loopActual = 1;
             _reproductor.clip = _loops[_loopActual];
             _reproductor.Play();
         }
-        else if (_porcentaje < 3 * 100 / 8 && _loopActual != 2)
+        else if (_porcentaje < 3 * 100 / 8 && _porcentaje >  2 * 100 / 8  && _loopActual != 2)
         {
             _loopActual = 2;
             _reproductor.clip = _loops[_loopActual];
             _reproductor.Play();
         }
-        else if (_porcentaje < 4 * 100 / 8 && _loopActual != 3)
+        else if (_porcentaje < 4 * 100 / 8 && _porcentaje > 3 * 100 / 8 && _loopActual != 3)
         {
             _loopActual = 3;
             _reproductor.clip = _loops[_loopActual];
             _reproductor.Play();
         }
-        else if (_porcentaje < 5 * 100 / 8 && _loopActual != 4)
+        else if (_porcentaje < 5 * 100 / 8 && _porcentaje > 4 * 100 / 8 && _loopActual != 4)
         {
             _loopActual = 4;
             _reproductor.clip = _loops[_loopActual];
             _reproductor.Play();
         }
-        else if (_porcentaje < 6 * 100 / 8 && _loopActual != 5)
+        else if (_porcentaje < 6 * 100 / 8 && _porcentaje > 5 * 100 / 8 && _loopActual != 5)
         {
             _loopActual = 5;
             _reproductor.clip = _loops[_loopActual];
             _reproductor.Play();
         }
-        else if (_porcentaje < 7 * 100 / 8 && _loopActual != 6)
+        else if (_porcentaje < 7 * 100 / 8 && _porcentaje > 6 * 100 / 8 && _loopActual != 6)
         {
             _loopActual = 6;
             _reproductor.clip = _loops[_loopActual];
             _reproductor.Play();
         }
-        else if (_loopActual != 7)
+        else if (_loopActual != 7 && _porcentaje > 7 * 100 / 8)
         {
             _loopActual = 7;
             _reproductor.clip = _loops[_loopActual];
