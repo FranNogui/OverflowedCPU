@@ -30,17 +30,17 @@ public class MovimientoPersonajeConRigidBody : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.gameObject.CompareTag("Enemigo"))
+       /* if (collision.gameObject.CompareTag("Enemigo"))
         {
             Debug.Log("Jugador atacado");
-        }
+        }*/
     }
 
-    private void OnTriggerEnter(Collider other)
+    private void OnTriggerEnter2D(Collider2D other)
     {
         if (other.CompareTag("Enemigo"))
         {
-            Debug.Log("Jugador atacado trigger");
+            Debug.Log("Jugador atacado");
         }
     }
 }
