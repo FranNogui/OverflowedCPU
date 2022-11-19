@@ -28,10 +28,10 @@ public class MovimientoBala : MonoBehaviour
         {
             Debug.Log("Dañando enemigo");
         }
-        if (collision.CompareTag("Finish"))
+        /*if (collision.CompareTag("Finish"))
         {
             Debug.Log("Destruyendo bala");
             Destroy(collision.gameObject);
-        }
+        }*/
     }
 }

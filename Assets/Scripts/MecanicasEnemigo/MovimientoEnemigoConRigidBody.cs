@@ -73,7 +73,7 @@ public class MovimientoEnemigoConRigidBody : MonoBehaviour
         if (other.CompareTag("Proyectil"))
         {
             Debug.Log("Enemigo atacado");
-            Destroy(other.gameObject);
+           // Destroy(other.gameObject);
         }
     }
 }
