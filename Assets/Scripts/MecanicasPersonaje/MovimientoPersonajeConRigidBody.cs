@@ -56,4 +56,14 @@ public class MovimientoPersonajeConRigidBody : MonoBehaviour
     {
         return vidaMax;
     }
+
+    public void setVida(int vida)
+    {
+        this.vida = vida;
+    }
+
+    public int getVida()
+    {
+        return vida;
+    }
 }

@@ -805,7 +805,7 @@ MonoBehaviour:
   jugador: {fileID: 1992540015}
   bala: {fileID: 167931421}
   tiempoEspera: 2
-  "da\xF1o": 1
+  "da\xF1o": 0
 --- !u!114 &856144962
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1442,6 +1442,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 4
+  vidaMax: 1
 --- !u!50 &1992540018
 Rigidbody2D:
   serializedVersion: 4
