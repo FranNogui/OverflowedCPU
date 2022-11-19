@@ -43,6 +43,13 @@ public class ControladorCPU : MonoBehaviour
     [SerializeField]
     private GeneradorEnemigos[] _portales;
 
+    [SerializeField]
+    private AudioSource _reproductor;
+    private int _loopActual = 0;
+
+    [SerializeField]
+    private AudioClip[] _loops;
+
     private int _nivel;
 
     // Start is called before the first frame update
@@ -58,6 +65,7 @@ public class ControladorCPU : MonoBehaviour
         iniciarJuego();
         _carga = 0;
         iniciarPortales(_nivel);
+        _reproductor.clip = _loops[_loopActual];
     }
 
     // Update is called once per frame
@@ -68,6 +76,7 @@ public class ControladorCPU : MonoBehaviour
         _porcentajeTexto.text = _porcentaje.ToString("0.00") + "%";
         _porcentajeTexto.color = new Color(1f, 1f - (_porcentaje / 100.0f), 1f - (_porcentaje / 100.0f), 1f);
         actualizarTiempo();
+        comprobarMusica();
 
         if (Input.GetAxis("Mouse ScrollWheel") < 0f)
         {
@@ -235,6 +244,58 @@ public class ControladorCPU : MonoBehaviour
         {
             _portales[i].nivel(nivel);
             _portales[i].activar();
+        }
+    }
+
+    public void comprobarMusica()
+    {
+        if (_porcentaje < 100 / 8 && _loopActual != 0)
+        {
+            _loopActual = 0;
+            _reproductor.clip = _loops[_loopActual];
+            _reproductor.Play();
+        }
+        else if (_porcentaje < 2 * 100 / 8 && _loopActual != 1)
+        {
+            _loopActual = 1;
+            _reproductor.clip = _loops[_loopActual];
+            _reproductor.Play();
+        }
+        else if (_porcentaje < 3 * 100 / 8 && _loopActual != 2)
+        {
+            _loopActual = 2;
+            _reproductor.clip = _loops[_loopActual];
+            _reproductor.Play();
+        }
+        else if (_porcentaje < 4 * 100 / 8 && _loopActual != 3)
+        {
+            _loopActual = 3;
+            _reproductor.clip = _loops[_loopActual];
+            _reproductor.Play();
+        }
+        else if (_porcentaje < 5 * 100 / 8 && _loopActual != 4)
+        {
+            _loopActual = 4;
+            _reproductor.clip = _loops[_loopActual];
+            _reproductor.Play();
+        }
+        else if (_porcentaje < 6 * 100 / 8 && _loopActual != 5)
+        {
+            _loopActual = 5;
+            _reproductor.clip = _loops[_loopActual];
+            _reproductor.Play();
+        }
+        else if (_porcentaje < 7 * 100 / 8 && _loopActual != 6)
+        {
+            _loopActual = 6;
+            _reproductor.clip = _loops[_loopActual];
+            _reproductor.Play();
+        }
+        else if (_loopActual != 7)
+        {
+            _loopActual = 7;
+            _reproductor.clip = _loops[_loopActual];
+            _reproductor.Play();
         }
     }
 }

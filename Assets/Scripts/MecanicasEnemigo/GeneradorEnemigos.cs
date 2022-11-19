@@ -35,6 +35,9 @@ public class GeneradorEnemigos : MonoBehaviour
     private float tiempo;
     private bool activo;
 
+    [SerializeField]
+    private ControladorCPU _CPU;
+
     void Start()
     {
         posY = transform.position.y;
@@ -44,6 +47,7 @@ public class GeneradorEnemigos : MonoBehaviour
         tiempo = 0f;
         generadorNumero = new System.Random();
         activo = false;
+        _CPU = GameObject.Find("ControladorCPU").GetComponent<ControladorCPU>();
     }
 
     // Update is called once per frame
@@ -84,6 +88,7 @@ public class GeneradorEnemigos : MonoBehaviour
             Instantiate(enemigo3, new Vector2(puntoGeneracionX, posY), transform.rotation);
         else
             Instantiate(enemigo4, new Vector2(puntoGeneracionX, posY), transform.rotation);
+        _CPU.anyadirCarga(20);
     }
 
     private void GenerarEnemigoVertical(float puntoGeneracionY)
@@ -98,6 +103,7 @@ public class GeneradorEnemigos : MonoBehaviour
             Instantiate(enemigo3, new Vector2(posX, puntoGeneracionY), transform.rotation);
         else
             Instantiate(enemigo4, new Vector2(posX, puntoGeneracionY), transform.rotation);
+        _CPU.anyadirCarga(20);
     }
 
     public void activar()
