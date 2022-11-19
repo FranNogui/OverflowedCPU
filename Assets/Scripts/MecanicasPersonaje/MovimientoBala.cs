@@ -7,7 +7,7 @@ public class MovimientoBala : MonoBehaviour
     [SerializeField]
     private float speed;
     [SerializeField]
-    private float daño;
+    private int daño;
     public Vector2 posEnemigo;
     public Vector2 posJugador;
     // Start is called before the first frame update
@@ -33,5 +33,15 @@ public class MovimientoBala : MonoBehaviour
             Debug.Log("Destruyendo bala");
             Destroy(collision.gameObject);
         }*/
+    }
+
+    public int getDaño()
+    {
+        return daño;
+    }
+
+    public void setDaño(int daño)
+    {
+        this.daño = daño;
     }
 }

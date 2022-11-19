@@ -13,6 +13,11 @@ public class MovimientoEnemigoConRigidBody : MonoBehaviour
     //private Rigidbody2D enemyrb;
     private Vector2 vectorJugador;
     //private NavMeshAgent navMeshAgent;
+    [SerializeField]
+    private int vidaMax;
+    private int vida;
+    [SerializeField]
+    private int ataque;
 
     private void Awake()
     {
@@ -22,6 +27,7 @@ public class MovimientoEnemigoConRigidBody : MonoBehaviour
     void Start()
     {
         //enemyrb = GetComponent<Rigidbody2D>();
+        vida = vidaMax;
     }
 
     // Update is called once per frame
@@ -73,7 +79,34 @@ public class MovimientoEnemigoConRigidBody : MonoBehaviour
         if (other.CompareTag("Proyectil"))
         {
             Debug.Log("Enemigo atacado");
-           // Destroy(other.gameObject);
+            int daño = other.gameObject.GetComponent<MovimientoBala>().getDaño();
+            Destroy(other.gameObject);
+            
+            DañarEnemigo(daño);
         }
+    }
+
+    private void DañarEnemigo(int daño)
+    {
+        vida = vida - daño;
+        if(vida <= 0)
+        {
+            MatarEnemigo();
+        }
+    }
+
+    private void MatarEnemigo()
+    {
+        Destroy(this.gameObject);
+    }
+
+    public void setAtaque(int ataque)
+    {
+        this.ataque = ataque;
+    }
+
+    public int getAtaque()
+    {
+        return ataque;
     }
 }

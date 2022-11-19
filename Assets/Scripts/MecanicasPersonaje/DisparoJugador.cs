@@ -14,6 +14,8 @@ public class DisparoJugador : MonoBehaviour
     private Transform enemigoCercano;
     private DetectorEnemigos detectorEnemigos;
     private MovimientoBala movBala;
+    [SerializeField]
+    private int daño;
     // Start is called before the first frame update
     void Start()
     {
@@ -53,6 +55,17 @@ public class DisparoJugador : MonoBehaviour
         movBala = bala.GetComponent<MovimientoBala>();
         movBala.posEnemigo = enemigoCercano.position;
         movBala.posJugador = jugador.position;
+        movBala.setDaño(daño);
         Instantiate(bala, jugador.position, jugador.rotation);
+    }
+
+    public int getDaño()
+    {
+        return daño;
+    }
+
+    public void setDaño(int daño)
+    {
+        this.daño = daño;
     }
 }

@@ -7,6 +7,9 @@ public class MovimientoPersonajeConRigidBody : MonoBehaviour
     public float speed = 5;
     private Rigidbody2D playerRb;
     private Vector2 moveInput;
+    [SerializeField]
+    private int vidaMax;
+    private int vida;
     // Start is called before the first frame update
     void Start()
     {
@@ -43,4 +46,14 @@ public class MovimientoPersonajeConRigidBody : MonoBehaviour
             Debug.Log("Jugador atacado");
         }
     }*/
+
+    public void setVidaMax(int vidaMax)
+    {
+        this.vidaMax = vidaMax;
+    }
+
+    public void getVidaMax()
+    {
+        return vidaMax;
+    }
 }
