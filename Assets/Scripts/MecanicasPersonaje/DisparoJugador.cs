@@ -9,10 +9,11 @@ public class DisparoJugador : MonoBehaviour
     [SerializeField]
     private GameObject bala;
     [SerializeField]
-    private int tiempoEspera;
+    public float tiempoEspera;
     private float tiempo;
     private Transform enemigoCercano;
     private DetectorEnemigos detectorEnemigos;
+    public float porcentajeDisparo;
     private MovimientoBala movBala;
     [SerializeField]
     private int daño;
@@ -21,13 +22,14 @@ public class DisparoJugador : MonoBehaviour
     {
         detectorEnemigos = GetComponent<DetectorEnemigos>();
         tiempo = 0f;
+        porcentajeDisparo = 1f;
     }
 
     // Update is called once per frame
     void Update()
     {
         tiempo = tiempo + 1f * Time.deltaTime;
-        if (tiempo >= tiempoEspera)
+        if (tiempo >= tiempoEspera * porcentajeDisparo)
         {
             tiempo = 0;
             if (detectorEnemigos.VerEnemigos().Count != 0)

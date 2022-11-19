@@ -106,8 +106,9 @@ MonoBehaviour:
   triangulo: {fileID: 2579569608371634622, guid: 8e618bc5efebdc24192617c10b41b881, type: 3}
   cuadrado: {fileID: 2579569608371634622, guid: 8e618bc5efebdc24192617c10b41b881, type: 3}
   pentagono: {fileID: 2579569608371634622, guid: 8e618bc5efebdc24192617c10b41b881, type: 3}
-  tiempoEsperaMin: 0
-  tiempoEsperaMax: 0
+  tiempoEsperaMin: 2
+  tiempoEsperaMax: 4
+  _CPU: {fileID: 0}
 --- !u!95 &3563013216630785941
 Animator:
   serializedVersion: 4

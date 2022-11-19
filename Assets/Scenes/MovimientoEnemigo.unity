@@ -345,6 +345,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   jugador: {fileID: 612391187}
   bala: {fileID: 1863841014}
+  tiempoEspera: 2
+  "da\xF1o": 0
 --- !u!1 &612391186
 GameObject:
   m_ObjectHideFlags: 0
@@ -378,7 +380,6 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 466086055}
-  - {fileID: 2074272971}
   - {fileID: 1590266344}
   m_Father: {fileID: 0}
   m_RootOrder: 1
@@ -422,6 +423,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 4
+  vidaMax: 0
 --- !u!50 &612391190
 Rigidbody2D:
   serializedVersion: 4
@@ -1149,6 +1151,8 @@ MonoBehaviour:
   estarAlerta: 1
   posJugador: {fileID: 612391187}
   speed: 1
+  vidaMax: 0
+  ataque: 0
 --- !u!50 &1359952934
 Rigidbody2D:
   serializedVersion: 4
@@ -1201,7 +1205,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 612391187}
-  m_RootOrder: 2
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1590266345
 MonoBehaviour:
@@ -1480,34 +1484,3 @@ MonoBehaviour:
   "da\xF1o": 0
   posEnemigo: {x: 0, y: 0}
   posJugador: {x: 0, y: 0}
---- !u!1 &2074272970
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 2074272971}
-  m_Layer: 3
-  m_Name: controladorDisparo
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &2074272971
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2074272970}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 612391187}
-  m_RootOrder: 1
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}

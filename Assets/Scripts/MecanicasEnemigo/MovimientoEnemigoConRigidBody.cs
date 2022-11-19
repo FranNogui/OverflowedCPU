@@ -18,11 +18,16 @@ public class MovimientoEnemigoConRigidBody : MonoBehaviour
     private int vida;
     [SerializeField]
     private int ataque;
+    [SerializeField]
+    private GameObject _item;
+
+    private ControladorCPU _CPU;
 
     private void Awake()
     {
         //navMeshAgent = GetComponent<NavMeshAgent>();
         posJugador = GameObject.Find("Player").transform;
+        _CPU = GameObject.Find("ControladorCPU").GetComponent<ControladorCPU>();
     }
 
     void Start()
@@ -98,6 +103,9 @@ public class MovimientoEnemigoConRigidBody : MonoBehaviour
 
     private void MatarEnemigo()
     {
+        Instantiate(_item, transform.position, transform.rotation);
+        _CPU.restarCarga(20);
+        _CPU.enemigosVivos.Remove(this.gameObject);
         Destroy(this.gameObject);
     }
 

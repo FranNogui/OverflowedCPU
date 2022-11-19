@@ -30,9 +30,13 @@ public class ControladorItem : MonoBehaviour
 
     private SpriteRenderer _seleccion;
 
+    private float _carga;
+
     public void Start()
     {
         _seleccion = GetComponent<SpriteRenderer>();
+        _itemActual = Items.Nada;
+        _carga = 0;
     }
 
     public void cambiarItem(Items item)
@@ -78,4 +82,13 @@ public class ControladorItem : MonoBehaviour
             _seleccion.sprite = _noSelec;
     }
 
+
+    public void asignarCarga(float carga)
+    {
+        _carga = carga;
+    }
+    public float obtenerCarga()
+    {
+        return _carga;
+    }
 }

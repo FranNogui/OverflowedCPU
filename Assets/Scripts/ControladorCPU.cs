@@ -1,9 +1,11 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Diagnostics.Contracts;
 using TMPro;
 using Unity.VisualScripting;
 using UnityEditor.Animations;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class ControladorCPU : MonoBehaviour
@@ -11,6 +13,14 @@ public class ControladorCPU : MonoBehaviour
     private float _carga;
     private const float MAXCARGA = 300;
     private float _porcentaje;
+
+    public List<GameObject> enemigosVivos;
+
+    [SerializeField]
+    DisparoJugador _disparo;
+
+    [SerializeField]
+    MovimientoPersonajeConRigidBody player;
 
     [SerializeField]
     private TextMeshProUGUI _porcentajeTexto;
@@ -52,6 +62,11 @@ public class ControladorCPU : MonoBehaviour
 
     private int _nivel;
 
+    public void Awake()
+    {
+        enemigosVivos = new List<GameObject>();
+    }
+
     // Start is called before the first frame update
     void Start()
     {
@@ -68,9 +83,23 @@ public class ControladorCPU : MonoBehaviour
         _reproductor.clip = _loops[_loopActual];
     }
 
+    bool crash = false;
+
+    IEnumerator Parar()
+    {
+        Time.timeScale = 0;
+        crash = true;
+        yield return new WaitForSecondsRealtime(1.0f);
+        SceneManager.LoadScene("FinJuego");
+    }
+
     // Update is called once per frame
     void Update()
-    {
+    { 
+        if (crash)
+        {
+            _reproductor.Play();
+        }
         _controladorAnimacion.SetFloat("porcentaje", _porcentaje);
         _imagenCPU.color = new Color(1f, 1f - (_porcentaje / 100.0f), 1f - (_porcentaje / 100.0f), 1f);
         _porcentajeTexto.text = _porcentaje.ToString("0.00") + "%";
@@ -78,16 +107,38 @@ public class ControladorCPU : MonoBehaviour
         actualizarTiempo();
         comprobarMusica();
 
-        if (Input.GetAxis("Mouse ScrollWheel") < 0f)
+        if (_porcentaje >= 100)
+        {
+            StartCoroutine(Parar());
+        }
+
+        if (Input.GetAxis("Mouse ScrollWheel") < 0f || Input.GetKeyDown(KeyCode.LeftControl))
         {
             cambiarItemSelec((_itemSelec + 1) % 3);
         }
-        else if (Input.GetAxis("Mouse ScrollWheel") > 0f)
+        else if (Input.GetAxis("Mouse ScrollWheel") > 0f || Input.GetKeyDown(KeyCode.Space))
         {
             if (_itemSelec == 0)
                 cambiarItemSelec(2);
             else
                 cambiarItemSelec(_itemSelec - 1);
+        }
+        if (Input.GetKeyDown(KeyCode.Q))
+        {
+            if (_items[_itemSelec].obtenerItem() != ControladorItem.Items.Nada)
+            {
+                if (_items[_itemSelec].obtenerItem() == ControladorItem.Items.Botas)
+                {
+                    player.aumentarVel(-0.2f);
+                }
+                else if (_items[_itemSelec].obtenerItem() == ControladorItem.Items.Guantes)
+                {
+                    _disparo.porcentajeDisparo += 0.2f;
+                }
+                _items[_itemSelec].cambiarItem(ControladorItem.Items.Nada);
+                restarCarga(_items[_itemSelec].obtenerCarga());
+                _items[_itemSelec].asignarCarga(0);
+            }
         }
     }
 
@@ -117,17 +168,33 @@ public class ControladorCPU : MonoBehaviour
         }
         resetearTiempo();
         aumentarNivel();
+        quitarEnemigos();
     }
 
     void disminuirPiso()
     {
-        _pisoActual--;
+        if (_pisoActual != 0)
+            _pisoActual--;
         int piso = (int)_pisoActual;
         for (var i = 0; i < 2; i++)
         {
             _piso[i].cambiarA(piso % 10);
             piso /= 10;
         }
+        quitarEnemigos();
+        cambiarVida(2);
+        _puntuacionActual = 0;
+        aumentarPuntuacion(0);
+    }
+
+    public void quitarEnemigos()
+    {
+        foreach (GameObject o in enemigosVivos)
+        {
+            Destroy(o);
+            restarCarga(20);
+        }
+        enemigosVivos = new List<GameObject>();
     }
 
     void resetearTiempo()
@@ -181,7 +248,7 @@ public class ControladorCPU : MonoBehaviour
 
     public void morir()
     {
-        Debug.Log("Has muerto");
+        disminuirPiso();
     }
 
     public void iniciarJuego()
@@ -194,7 +261,7 @@ public class ControladorCPU : MonoBehaviour
 
     }
 
-    public bool cojerItem(Item item)
+    public bool cogerItem(Item item)
     {
         ControladorItem.Items itemRecogido = item.obtenerItem();
         if (itemRecogido == ControladorItem.Items.Moneda)
@@ -202,23 +269,27 @@ public class ControladorCPU : MonoBehaviour
             aumentarPuntuacion(10);
             restarCarga(Item.CARGAITEM);
             Destroy(item.gameObject);
+            return true;
         }
         else if (itemRecogido == ControladorItem.Items.Pocion)
         {
             recibirVida(1);
             restarCarga(Item.CARGAITEM);
             Destroy(item.gameObject);
+            return true;
         }
         else
         {
             for (var i = 0; i < 3; i++)
             {
+                Debug.Log("Hola estoy aqui");
                 if (_items[i].obtenerItem() == ControladorItem.Items.Nada)
                 {
                     _items[i].cambiarItem(itemRecogido);
-                    Destroy(item.gameObject);
-                    restarCarga(Item.CARGAITEM);
                     anyadirCarga(item._cargaEquipado);
+                    restarCarga(Item.CARGAITEM);
+                    _items[i].asignarCarga(item._cargaEquipado);
+                    Destroy(item.gameObject);
                     return true;
                 }
             }

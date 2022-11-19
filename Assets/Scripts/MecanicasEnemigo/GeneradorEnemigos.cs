@@ -94,17 +94,19 @@ public class GeneradorEnemigos : MonoBehaviour
 
     private void GenerarEnemigoCentral()
     {
+        GameObject creado;
         float rand = UnityEngine.Random.value;
         rand *= 100;
         if (rand < 100 / 4)
-            Instantiate(enemigo1, transform.position, transform.rotation);
+            creado = Instantiate(enemigo1, transform.position, transform.rotation);
         else if (rand < 2 * 100 / 4)
-            Instantiate(enemigo2, transform.position, transform.rotation);
+            creado = Instantiate(enemigo2, transform.position, transform.rotation);
         else if (rand < 3 * 100 / 4)
-            Instantiate(enemigo3, transform.position, transform.rotation);
+            creado = Instantiate(enemigo3, transform.position, transform.rotation);
         else
-            Instantiate(enemigo4, transform.position, transform.rotation);
+            creado = Instantiate(enemigo4, transform.position, transform.rotation);
         _CPU.anyadirCarga(20);
+        _CPU.enemigosVivos.Add(creado);
     }
 
     private void GenerarEnemigoVertical(float puntoGeneracionY)
@@ -141,24 +143,24 @@ public class GeneradorEnemigos : MonoBehaviour
                 enemigo2 = circulo;
                 enemigo3 = circulo;
                 enemigo4 = circulo;
-                tiempoEsperaMin = 10;
-                tiempoEsperaMax = 20;
+                tiempoEsperaMin = 5;
+                tiempoEsperaMax = 10;
                 break;
             case 1:
                 enemigo1 = circulo;
                 enemigo2 = circulo;
                 enemigo3 = circulo;
                 enemigo4 = triangulo;
-                tiempoEsperaMin = 10;
-                tiempoEsperaMax = 20;
+                tiempoEsperaMin = 5;
+                tiempoEsperaMax = 10;
                 break;
             case 2:
                 enemigo1 = circulo;
                 enemigo2 = circulo;
                 enemigo3 = circulo;
                 enemigo4 = triangulo;
-                tiempoEsperaMin = 10;
-                tiempoEsperaMax = 20;
+                tiempoEsperaMin = 4;
+                tiempoEsperaMax = 6;
                 break;
             case 3:
                 break;

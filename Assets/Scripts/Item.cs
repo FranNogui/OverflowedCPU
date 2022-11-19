@@ -40,17 +40,12 @@ public class Item : MonoBehaviour
 
         float rand = Random.value;
         rand *= 100;
-        if (rand < 5)
-        { _item = ControladorItem.Items.Escudo; _cargaEquipado = 10; }
-        else if (rand < 10)
-        { _item = ControladorItem.Items.Bomba; _cargaEquipado = 10; }
+
+        if (rand < 10)
+        { _item = ControladorItem.Items.Guantes; _cargaEquipado = 30; }
         else if (rand < 20)
-        { _item = ControladorItem.Items.Flecha; _cargaEquipado = 50; }
+        { _item = ControladorItem.Items.Botas; _cargaEquipado = 20; }
         else if (rand < 30)
-        { _item = ControladorItem.Items.Guantes; _cargaEquipado = 50; }
-        else if (rand < 40)
-        { _item = ControladorItem.Items.Botas; _cargaEquipado = 30; }
-        else if (rand < 60)
         { _item = ControladorItem.Items.Pocion; _cargaEquipado = 0; }
         else
         { _item = ControladorItem.Items.Moneda; _cargaEquipado = 0; }
@@ -82,7 +77,7 @@ public class Item : MonoBehaviour
                 _imagen.sprite = _moneda;
                 break;
         }
-
+        StartCoroutine(destruirse());
     }
 
     // Update is called once per frame
@@ -94,5 +89,11 @@ public class Item : MonoBehaviour
     public ControladorItem.Items obtenerItem()
     {
         return _item;
+    }
+
+    IEnumerator destruirse()
+    {
+        yield return new WaitForSeconds(5);
+        Destroy(this.gameObject);
     }
 }
