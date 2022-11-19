@@ -6,11 +6,16 @@ public class DetectarItem : MonoBehaviour
 {
     private List<GameObject> itemsDisponibles;
     private int numItems;
+    private ControladorCPU _CPU;
+    public DisparoJugador _disparo;
+    [SerializeField]
+    private MovimientoPersonajeConRigidBody player;
     // Start is called before the first frame update
     void Start()
     {
         itemsDisponibles = new List<GameObject>();
         numItems = 0;
+        _CPU = GameObject.Find("ControladorCPU").GetComponent<ControladorCPU>();   
     }
 
     // Update is called once per frame
@@ -35,7 +40,7 @@ public class DetectarItem : MonoBehaviour
 
     private void OnTriggerExit2D(Collider2D other)
     {
-        if (other.CompareTag("Enemigo"))
+        if (other.CompareTag("Item"))
         {
             Debug.Log("Item demasiado lejos");
             numItems--;
@@ -45,6 +50,25 @@ public class DetectarItem : MonoBehaviour
 
     private void CogerItem()
     {
-        Destroy(itemsDisponibles[numItems - 1]);
+        GameObject item = itemsDisponibles[0];
+        numItems--;
+        itemsDisponibles.Remove(item);
+        ControladorItem.Items tipoItem = item.GetComponent<Item>().obtenerItem();
+        if (_CPU.cogerItem(item.GetComponent<Item>()))
+        {
+            if (tipoItem == ControladorItem.Items.Botas)
+            {
+                player.aumentarVel(0.2f);
+            }
+            else if (tipoItem == ControladorItem.Items.Guantes)
+            {
+                _disparo.porcentajeDisparo -= 0.2f ;
+            }
+        }
+        else
+        {
+            itemsDisponibles.Add(item);
+            numItems++;
+        }
     }
 }

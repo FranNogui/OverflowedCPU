@@ -10,10 +10,13 @@ public class MovimientoPersonajeConRigidBody : MonoBehaviour
     [SerializeField]
     private int vidaMax;
     private int vida;
+    private float porIncVel;
+
     // Start is called before the first frame update
     void Start()
     {
         playerRb = GetComponent<Rigidbody2D>();
+        porIncVel = 1f;
     }
 
     // Update is called once per frame
@@ -28,7 +31,7 @@ public class MovimientoPersonajeConRigidBody : MonoBehaviour
 
     private void FixedUpdate()
     {
-        playerRb.MovePosition(playerRb.position + moveInput * speed * Time.fixedDeltaTime);
+        playerRb.MovePosition(playerRb.position + moveInput * speed * Time.fixedDeltaTime * porIncVel);
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
@@ -66,4 +69,11 @@ public class MovimientoPersonajeConRigidBody : MonoBehaviour
     {
         return vida;
     }
+
+    public void aumentarVel(float inc)
+    {
+        porIncVel += inc;
+    }
+
+
 }
