@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 using static ControladorItem;
-using static UnityEditor.Progress;
 
 public class Item : MonoBehaviour
 {

@@ -48,18 +48,23 @@ public class GeneradorEnemigos : MonoBehaviour
         generadorNumero = new System.Random();
         activo = false;
         _CPU = GameObject.Find("ControladorCPU").GetComponent<ControladorCPU>();
+        StartCoroutine(spawn());
+    }
+
+    IEnumerator spawn()
+    {
+        while(true)
+        {
+            yield return new WaitForSeconds(5);
+            GenerarEnemigo();
+        }
+        
     }
 
     // Update is called once per frame
     void Update()
     {
-        int tiempoEspera = generadorNumero.Next(tiempoEsperaMin, tiempoEsperaMax);
-        tiempo = tiempo + 1f * Time.deltaTime;
-        if(tiempo >= tiempoEspera && activo)
-        {
-            tiempo = 0f;
-            GenerarEnemigo();
-        }
+      
     }
 
     private void GenerarEnemigo()
